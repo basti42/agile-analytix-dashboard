@@ -1,9 +1,10 @@
 <script lang="ts">
     import "@picocss/pico/css/pico.min.css"
+    import "../../app.css"
 </script>
 
 <style>
-    nav { border-bottom: thin solid turquoise; }
+    nav { border-bottom: thin solid var(--primary); }
 </style>
 
 <nav class="container-fluid">
