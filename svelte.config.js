@@ -8,7 +8,13 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		files: {
+			hooks: {
+				client: 'src/lib/hooks/hooks.client.ts',
+				server: 'src/lib/hooks/hooks.server.ts'
+			}
+		}
 	}
 };
 
