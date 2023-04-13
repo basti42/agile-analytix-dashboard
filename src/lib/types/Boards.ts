@@ -14,6 +14,11 @@ export interface TeamBoard {
   foreign_origin: number;
 }
 
+export interface GetBoardInterface {
+  number_of_elements: number;
+  elements: Array<TeamBoard>
+}
+
 export interface TeamOverviewObject {
-  boards: Array<TeamBoard>;
+  board_elements: GetBoardInterface;
 }
