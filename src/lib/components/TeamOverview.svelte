@@ -1,14 +1,13 @@
 <script lang="ts">
-  let teams = [
-    { name: "Project 1" },
-    { name: "Project 2" },
-    { name: "Project 3" },
-    { name: "Project 4" },
-  ];
+    import type { TeamBoard } from "$lib/types/Boards";
+    export let teamboards: Array<TeamBoard> = [];
+
 </script>
 
-{#each teams as team}
-  <details role="button">
-    <summary>{team.name}</summary>
+{#each teamboards as teamboard}
+  <details>
+    <summary>{teamboard.name}</summary>
+    <p>Number of Team Members: {teamboard.users.length}</p>
+    <p>Average Storypoints / Sprint: {teamboard.avg_completed_stroypoints_per_sprint | 0.0}</p>
   </details>
 {/each}
