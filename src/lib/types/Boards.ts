@@ -10,6 +10,7 @@ export interface TeamBoard {
   avg_completed_stroypoints_per_sprint: number;
   avg_completed_stories_per_sprint: number;
   avg_story_turn_over_time: number;
+  avg_completion_time: number;
   avg_story_overflow: number;
   foreign_origin: number;
 }
@@ -21,4 +22,9 @@ export interface GetBoardInterface {
 
 export interface TeamOverviewObject {
   board_elements: GetBoardInterface;
+}
+
+export interface BoardWithSprintsOverview {
+  board: TeamBoard;
+  sprints: Array<string>;
 }
