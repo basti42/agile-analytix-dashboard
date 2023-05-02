@@ -1,28 +1,32 @@
 <script lang="ts">
     import type { SprintResponse } from "$lib/types/Sprints";
-    import { onMount } from "svelte";
-    import { stringify } from "uuid";
 
-    let sprintResponse: SprintResponse;
-    let loading = true;
+    export let sprintResponse: SprintResponse;
 
-    export let boardUUID: string;
-
-    onMount(async () => {
-        const res = await fetch("http://localhost:8082/api/v1/agile-analytix/sprints&board_uuid" + boardUUID);
-        sprintResponse = await res.json();
-        console.log(sprintResponse);
-        loading = false;
-    });
 </script>
 
 <div class="container-fluid">
 
-    { #each sprintResponse.elements as sprint }
-        <li>{sprint.name}</li>    
-    { :else }
-        <p>loading data ... </p>
-    { /each }
+    <table role="grid">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Velocity</th>
+                <th scope="col">#Developers</th>
+            </tr>
+        </thead>
+        <tbody>
+            { #each sprintResponse.elements as {name, total_storypoints_completed, total_number_of_active_developers}, i }
+            <tr>
+                <th scope="row">{sprintResponse.number_of_elements - i}</th>
+                <td>{name}</td>
+                <td>{total_storypoints_completed}</td>
+                <td>{total_number_of_active_developers}</td>
+            </tr>    
+        { /each }
+        </tbody>
+    </table>
 
 
 </div>

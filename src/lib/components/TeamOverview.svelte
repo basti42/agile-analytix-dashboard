@@ -13,6 +13,7 @@
           <div class="grid">
             <span><small>Velocity: </small>{teamboard.avg_completed_stories_per_sprint | 0.0}</span>
             <span><small>#Team Members: </small>{teamboard.users.length}</span>
+            <span><small>Team Origin: </small>{teamboard.foreign_origin}</span>
           </div>
         </div>  
       </a>
