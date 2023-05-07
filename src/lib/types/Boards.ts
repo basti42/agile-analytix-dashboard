@@ -5,14 +5,9 @@ export interface TeamBoard {
   name: string;
   type: string;
   url: string;
-  tags: Array<string>;
-  users: Array<string>;
-  avg_completed_stroypoints_per_sprint: number;
-  avg_completed_stories_per_sprint: number;
-  avg_story_turn_over_time: number;
-  avg_completion_time: number;
-  avg_story_overflow: number;
+  members: Array<string> | undefined;
   foreign_origin: number;
+  created_at: string;
 }
 
 export interface GetBoardInterface {
