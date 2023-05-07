@@ -9,6 +9,7 @@
     import turnOverLogo from "$lib/assets/icons/turnovertime_light.png";
     import type { BoardSprints } from "$lib/types/ApiTypes";
     import type { Sprint } from "$lib/types/Sprints";
+    import VelocityForecastChart from "$lib/components/VelocityForecastChart.svelte";
 
     export let data: BoardSprints;
 
@@ -36,6 +37,8 @@
             <InfoCard icon_path={membersLogo} value={calc_average_number_of_developers(data.sprints.elements)} label="Avg #Developers"></InfoCard>
         </div>
     </div>
+
+    <!-- <VelocityForecastChart sprints={data.sprints.elements}></VelocityForecastChart> -->
 
     <SprintOverview sprintResponse={data.sprints}></SprintOverview>
 
