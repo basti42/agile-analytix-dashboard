@@ -6,7 +6,7 @@
 
     import velocityLogo from "$lib/assets/icons/velocity_light.png";
     import membersLogo from "$lib/assets/icons/members_light.png";
-    import turnOverLogo from "$lib/assets/icons/turnovertime_light.png";
+    import bugLogo from "$lib/assets/icons/bug_light.png";
     import type { BoardSprints } from "$lib/types/ApiTypes";
     import type { Sprint } from "$lib/types/Sprints";
     import VelocityForecastChart from "$lib/components/VelocityForecastChart.svelte";
@@ -25,6 +25,11 @@
         return (total_devs / devs.length).toFixed(2);
     };
 
+    const calc_average_bug_count = (sprints: Array<Sprint>): string => {
+        const total_bug_count = sprints.reduce((acc, s) => acc + s.bug_count, 0.0);
+        return (total_bug_count / sprints.length).toFixed(2);
+    }
+
 </script>
 
 <div class="container-fluid">
@@ -33,12 +38,12 @@
     <div class="container-fluid">
         <div class="grid">
             <InfoCard icon_path={velocityLogo} value={calc_average_velocity(data.sprints.elements)} label="Avg Velocity"></InfoCard>
-            <!-- <InfoCard icon_path={turnOverLogo} value={calc_average_story_overflow(data.sprints.elements)} label="Avg Overflow"></InfoCard> -->
             <InfoCard icon_path={membersLogo} value={calc_average_number_of_developers(data.sprints.elements)} label="Avg #Developers"></InfoCard>
+            <InfoCard icon_path={bugLogo} value={calc_average_bug_count(data.sprints.elements)} label="Avg Bug Count"></InfoCard>
         </div>
     </div>
 
-    <!-- <VelocityForecastChart sprints={data.sprints.elements}></VelocityForecastChart> -->
+    <VelocityForecastChart sprints={data.sprints.elements}></VelocityForecastChart>
 
     <SprintOverview sprintResponse={data.sprints}></SprintOverview>
 

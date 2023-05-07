@@ -1,48 +1,60 @@
 <script lang="ts">
     import type { Sprint } from '$lib/types/Sprints';
-    import { chartable } from '$lib/plotting/echarts';
+    import * as echarts from 'echarts';
+    import { onMount } from 'svelte';
+    
+    
     export let sprints: Array<Sprint>;
-    
-    const getData = (arr: Array<Sprint>) => {
-        const names = arr.map((a) => a.name);
-        const velocity_values = arr.map((a) => a.velocity);
-        const forecast_values = arr.map((a) => a.forecast);
-        return {
-            names, velocity_values, forecast_values
-        };
-    };
-    const data = getData(sprints);
 
-    let options = {
-        xAxis: {
-            type: 'category',
-            data: data.names
-        },
-        yAxis: {
-            type: 'values'
-        },
-        series:  [
+    onMount(() => {
+        const node = document.getElementById("velocity_forecast_chart");
+        const names = sprints.map((a) => a.name);
+        console.debug(`name = ${names}`);
+        const velocity_values = sprints.map((a) => a.velocity);
+        console.debug(`velocity = ${velocity_values}`);
+        const forecast_values = sprints.map((a) => a.forecast);
+        console.debug(`forecast = ${forecast_values}`);
+        if (node != null){
+            echarts.init(node).setOption(
             {
-                data: data.velocity_values,
-                type: 'line'
-            },
-            {
-                data: data.forecast_values,
-                type: 'line'
-            }
-        ]
-    }
-    
+                legend: {
+                    orient: 'vertical',
+                    right: 10,
+                    top: 'center',
+                    data: ["Velocity", "Forecast"]
+                },
+                xAxis: {
+                    type: 'category',
+                    data: names
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: "Velocity",
+                        data: velocity_values,
+                        type: 'line'
+                    },
+                    {
+                        name: "Forecast",
+                        data: forecast_values,
+                        type: 'line'
+                    }
+                ]
+            });
+        } else {
+            console.log("Could not get plot html element");
+        }
+    });    
 
 </script>
 
-<div id="velocity_forecast_chart" use:chartable={options}>
-
-</div>
+<div id="velocity_forecast_chart"></div>
 
 <style>
     #velocity_forecast_chart {
-        width: 800ox;
-        height: 200px;
+        width: 90%;
+        height: 40vh;
     }
 </style>
