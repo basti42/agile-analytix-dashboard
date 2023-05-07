@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
 
-    <table role="grid">
+    <table>
         <thead>
             <tr>
                 <th scope="col">#</th>

@@ -3,24 +3,30 @@
     import * as echarts from 'echarts';
     import { onMount } from 'svelte';
     
-    
     export let sprints: Array<Sprint>;
+
+    function getStandardDeviation (array: Array<number>) : number {
+        const n = array.length
+        const mean = array.reduce((a, b) => a + b) / n
+        return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+    }
 
     onMount(() => {
         const node = document.getElementById("velocity_forecast_chart");
-        const names = sprints.map((a) => a.name);
-        console.debug(`name = ${names}`);
-        const velocity_values = sprints.map((a) => a.velocity);
-        console.debug(`velocity = ${velocity_values}`);
-        const forecast_values = sprints.map((a) => a.forecast);
-        console.debug(`forecast = ${forecast_values}`);
+        const names = sprints.map((a) => a.name).reverse();
+        const velocity_values = sprints.map((a) => a.velocity).reverse();
+        const velocity_total = sprints.reduce((acc, s) => acc + s.velocity, 0.0);
+        const velocity_mean = velocity_total / velocity_values.length;
+        const forecast_values = sprints.map((a) => a.forecast).reverse();
+        const forecast_total = sprints.reduce((acc, s) => acc + s.forecast, 0.0);
+        const forecast_mean = forecast_total / forecast_values.length;
         if (node != null){
             echarts.init(node).setOption(
             {
                 legend: {
-                    orient: 'vertical',
-                    right: 10,
-                    top: 'center',
+                    orient: 'horizontal',
+                    left: 'center',
+                    top: 0,
                     data: ["Velocity", "Forecast"]
                 },
                 xAxis: {

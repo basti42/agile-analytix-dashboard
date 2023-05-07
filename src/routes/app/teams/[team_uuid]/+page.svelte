@@ -43,8 +43,10 @@
         </div>
     </div>
 
+    <!-- Velocity and Forecast plot -->
     <VelocityForecastChart sprints={data.sprints.elements}></VelocityForecastChart>
 
+    <!-- List of Sprints -->
     <SprintOverview sprintResponse={data.sprints}></SprintOverview>
 
 </div>

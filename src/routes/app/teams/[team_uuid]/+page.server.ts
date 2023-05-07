@@ -7,7 +7,7 @@ export async function load({ fetch, params }) {
       "http://localhost:8081/api/v1/agile-analytix/teamboards/"+params.team_uuid
     );
     const sprint_response = await fetch(
-      "http://localhost:8082/api/v1/agile-analytix/sprints?board_uuid="+params.team_uuid+"&limit=10"
+      "http://localhost:8082/api/v1/agile-analytix/sprints?board_uuid="+params.team_uuid+"&limit=20"
     );
     return {
       board: await board_response.json(),
