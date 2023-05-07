@@ -4,7 +4,7 @@ export interface Sprint {
     parent_board_uuid: string;
     foreign_parent_board_id: string;
     name: string;
-    description: string;
+    goal: string;
     state: string;
     start_date: string;
     end_date: string;
@@ -12,14 +12,12 @@ export interface Sprint {
     completed_date: string;
     url: string;
     tags: Array<string>;
-    completed_storypoints_distribution: Object;
-    committed_storypoints_distribution: Object;
-    total_storypoints_committed: number;
-    total_storypoints_completed: number;
-    total_number_of_stories_committed: number;
-    total_number_of_stories_completed: number;
-    total_number_of_active_developers: number;
-    avg_story_overflow: number;
+    velocity_distribution: Object;
+    forecast_distribution: Object;
+    forecast: number;
+    velocity: number;
+    developers: number;
+    bug_count: number;
 }
 
 export interface SprintResponse {

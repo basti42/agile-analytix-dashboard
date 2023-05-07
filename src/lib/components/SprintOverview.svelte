@@ -17,12 +17,12 @@
             </tr>
         </thead>
         <tbody>
-            { #each sprintResponse.elements as {name, total_storypoints_completed, total_number_of_active_developers}, i }
+            { #each sprintResponse.elements as {name, velocity, developers}, i }
             <tr>
                 <th scope="row">{sprintResponse.number_of_elements - i}</th>
                 <td>{name}</td>
-                <td>{total_storypoints_completed}</td>
-                <td>{total_number_of_active_developers}</td>
+                <td>{velocity}</td>
+                <td>{developers}</td>
             </tr>    
         { /each }
         </tbody>
